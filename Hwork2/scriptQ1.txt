@@ -1,0 +1,180 @@
+Script started on 2025-02-04 22:34:25+00:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="132" LINES="42"]
+[0;32m@OwenHagen [0m➜ [1;34m/workspaces/csci-330-homeworks-OwenHagen/Hwork2 [0;36m([1;31mmain[0;36m) [0m$ sbcl
+This is SBCL 1.4.3, an implementation of ANSI Common Lisp.
+More information about SBCL is available at <http://www.sbcl.org/>.
+
+SBCL is free software, provided as is, with absolutely no warranty.
+It is mostly in the public domain; some portions are provided under
+BSD-style licenses.  See the CREDITS and COPYING files in the
+distribution for more information.
+* (NOT (EQUAL 3 (ABS -3))) 
+
+NIL
+* (/ (+ 8 12) 2)
+
+10
+* (+ (* 3 3) (* 4 4))
+
+25
+* (defun MILES-PER-GALLON (INITIAL-ODOMETER-READING FINAL-ODOMETER-READING GALLONS-CONSUMED)	(/ (- FINAL-ODOMETER-READING INITIAL-ODOMETER-READING) GALLONS-CONSUMED))
+
+MILES-PER-GALLON
+* (MILES-PER-GALLON 1000 1200 10)
+
+20
+* (third ( ' ( '(the quick brown focx  x))
+
+BROWN
+* (list 2 'is    and 2 'is 4)
+
+(2 AND 2 IS 4)
+* (+1  1 (length t t t t)))          (list t t t t)))
+
+5
+* (cons 'patrick '(symour     eymour marvin))
+
+(PATRICK SEYMOUR MARVIN)
+* (cons "patrick        'patrick ' (list 'seymour 'marvin))
+
+(PATRICK SEYMOUR MARVIN)
+* defun       (defun mystery(x)    (x) (list (de  second x) (first x)))
+
+MYSTERY
+* (mystery '(dancing bear))
+
+(BEAR DANCING)
+* (mystery 'dancing be  'bear) ; This will cause an error due to too many arguments
+
+debugger invoked on a SB-INT:SIMPLE-PROGRAM-ERROR in thread
+#<THREAD "main thread" RUNNING {9461061}>:
+  invalid number of arguments: 2
+
+Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
+
+restarts (invokable by number or by possibly-abbreviated name):
+  0: [ABORT] Exit debugger, returning to top level.
+
+(MYSTERY DANCING BEAR) [external]
+   source: (SB-INT:NAMED-LAMBDA MYSTERY
+               (X)
+             (BLOCK MYSTERY (LIST (SECOND X) (FIRST X))))
+0] 0
+
+* (mystery '(zowie))
+
+(NIL ZOWIE)
+* ; That one causes d NIL because there is no first argument 
+
+* (mystery (list 'first 'second))
+
+(SECOND FIRST)
+* ( (defun speak (x y) (list 'all 'x 'is 'y)) ) ; The symbols x and y need to be treated as variables- Remove the single quotes on x and y in the list
+; in: DEFUN SPEAK
+;     (SB-INT:NAMED-LAMBDA SPEAK
+;         (X Y)
+;       (BLOCK SPEAK (LIST 'ALL 'X 'IS 'Y)))
+; 
+; caught STYLE-WARNING:
+;   The variable X is defined but never used.
+; 
+; caught STYLE-WARNING:
+;   The variable Y is defined but never used.
+; 
+; compilation unit finished
+;   caught 2 STYLE-WARNING conditions
+
+SPEAK
+* (defun speak (x y) (list 'all 'x 'is 'y))           x 'is y)                         (x) (y) (list 'all x 'is y)) ; Parameters incorrectly defined in the function, it should be (x y) 
+; in: DEFUN SPEAK
+;     (LIST 'ALL X 'IS Y)
+; 
+; caught WARNING:
+;   undefined variable: Y
+
+;     (Y)
+; 
+; caught STYLE-WARNING:
+;   undefined function: Y
+; 
+; compilation unit finished
+;   Undefined function:
+;     Y
+;   Undefined variable:
+;     Y
+;   caught 1 WARNING condition
+;   caught 1 STYLE-WARNING condition
+WARNING: redefining COMMON-LISP-USER::SPEAK in DEFUN
+
+SPEAK
+* (defun speak ((x) (y)) (list all 'x is 'y)) ; Parameters should be (x y) and the variables and list items need the single quotes switched like this: (list ‘all x ‘is y)
+; in: DEFUN SPEAK
+;     (SB-INT:NAMED-LAMBDA SPEAK
+;         ((X) (Y))
+;       (BLOCK SPEAK (LIST ALL 'X IS 'Y)))
+; 
+; caught ERROR:
+;   Required argument is not a symbol: (X)
+
+debugger invoked on a SB-INT:SIMPLE-PROGRAM-ERROR in thread
+#<THREAD "main thread" RUNNING {9461061}>:
+  Required argument is not a symbol: (X)
+
+Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
+
+restarts (invokable by number or by possibly-abbreviated name):
+  0: [ABORT] Exit debugger, returning to top level.
+
+((LAMBDA NIL :IN SB-C::ACTUALLY-COMPILE))
+0] 0
+; 
+; compilation unit aborted
+;   caught 1 fatal ERROR condition
+;   caught 1 ERROR condition
+
+* (list 'const     cons t nil)) 
+
+(CONS T NIL)
+* (eval (list 'cons t nil))
+
+(T)
+* (eva; l (eval (list 'cons t nil)))
+; in: T
+;     (T)
+; 
+; caught WARNING:
+;   The function T is undefined, and its name is reserved by ANSI CL so that even
+;   if it were defined later, the code doing so would not be portable.
+; 
+; compilation unit finished
+;   Undefined function:
+;     T
+;   caught 1 WARNING condition
+
+debugger invoked on a UNDEFINED-FUNCTION in thread
+#<THREAD "main thread" RUNNING {9461061}>:
+  The function COMMON-LISP:T is undefined.
+
+Type HELP for debugger help, or (SB-EXT:EXIT) to exit from SBCL.
+
+restarts (invokable by number or by possibly-abbreviated name):
+  0: [ABORT] Exit debugger, returning to top level.
+
+("undefined function")
+0] 0
+
+* (apply #'cons '(t nil))
+
+(T)
+* (eval nil)
+
+NIL
+* (list 'eval nil)
+
+(EVAL NIL)
+* (eval (list 'eval nil))
+
+NIL
+* exi   [0;32m@OwenHagen [0m➜ [1;34m/workspaces/csci-330-homeworks-OwenHagen/Hwork2 [0;36m([1;31mmain[0;36m) [0m$ exit
+exit
+
+Script done on 2025-02-04 22:54:18+00:00 [COMMAND_EXIT_CODE="0"]
